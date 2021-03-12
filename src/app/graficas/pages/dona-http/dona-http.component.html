@@ -1,0 +1,48 @@
+<div *ngIf="!isProd; else divProd">
+
+  <div class="row">
+    <div class="col">
+      <h1>Redes Sociales más usuadas</h1>
+      <hr>
+    </div>
+  </div>
+
+  <div *ngIf="doughnutChartData.length === 0; else divGrafica" class="alert alert-info">
+    Cargando...
+  </div>
+
+
+  <ng-template #divGrafica>
+
+    <div class="row" >
+      <div class="col">
+
+        <div style="display: block">
+          <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  [colors]="colors"
+          >
+          </canvas>
+        </div>
+
+        <span class="float-end text-info">
+          Información en billones de ususarios
+        </span>
+
+      </div>
+    </div>
+
+  </ng-template>
+
+
+</div>
+
+<ng-template #divProd>
+  <div  class="alert alert-danger">
+    Esta sección sólo esta visible en modo desarrollo dado que se debe levantar un Json Server en local HOST.
+  </div>
+
+</ng-template>
+
